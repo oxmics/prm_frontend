@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import Dashboard from './pages/Dashboard/Dashboard'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        asdfsfd
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Dashboard />} />
+        </Routes>
+      </BrowserRouter>
     );
   }
 }
