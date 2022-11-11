@@ -10,7 +10,7 @@ const Signin = () => {
 
     const handleFormSubmit = (e) => {
         e.preventDefault()
-        console.log(form)
+
     }
 
     const handleInputChange = (e) => {

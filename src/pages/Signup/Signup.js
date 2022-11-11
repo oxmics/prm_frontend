@@ -4,13 +4,14 @@ import Button from "../../components/Button/Button"
 import styles from "./Signup.module.scss"
 import { Link } from "react-router-dom"
 import { useState } from "react"
+import { AccountRequests } from "../../requests/requests"
 
 const Signin = () => {
     const [form, setForm] = useState({ firstname: "", lastname: "", email: "", password: "" })
 
     const handleFormSubmit = (e) => {
         e.preventDefault()
-        console.log(form)
+        AccountRequests.createUser({ email: form.email, password: form.password })
     }
 
     const handleInputChange = (e) => {
@@ -23,7 +24,7 @@ const Signin = () => {
                 <img className={styles.Signup__logo} src={LogoImage} />
                 <h1 className={styles.Signup__title}>Sign up</h1>
                 <form onSubmit={handleFormSubmit}>
-                    <div className={styles.Signup__inputWrapper}>
+                    {/* <div className={styles.Signup__inputWrapper}>
                         <div className={styles.Signup__inputWrapper__row}>
                             <div className={styles.Signup__inputWrapper__col}>
                                 <Input type="text" bootstrapIcon="bi-envelope" placeholder="Your Firstname" name="firstname" value={form.firstname} onChange={handleInputChange} />
@@ -32,7 +33,7 @@ const Signin = () => {
                                 <Input type="text" bootstrapIcon="bi-envelope" placeholder="Your Lastname" name="lastname" value={form.lastname} onChange={handleInputChange} />
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className={styles.Signup__inputWrapper}>
                         <Input type="email" bootstrapIcon="bi-envelope" placeholder="Your Email" name="email" value={form.email} onChange={handleInputChange} />
                     </div>
