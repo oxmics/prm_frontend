@@ -1,18 +1,4 @@
-
-class Requests {
-    static apiBaseUrl = "http://localhost:8000"
-
-    static getHeaders(token) {
-        return {
-            "Content-Type": "application/json",
-            ...(token && { "Authorization": token })
-        }
-    }
-
-    static getJsonData(obj) {
-        return JSON.stringify(obj)
-    }
-}
+import Requests from "./Requests"
 
 class AccountRequests extends Requests {
     static apiUrl = super.apiBaseUrl + "/account"
@@ -27,7 +13,7 @@ class AccountRequests extends Requests {
         })
 
         if (!response.ok) {
-            return new Error("Something went wrong!")
+            return new Error("Couldn't Register")
         }
 
         const data = await response.json()
@@ -35,6 +21,4 @@ class AccountRequests extends Requests {
     }
 }
 
-export {
-    AccountRequests
-}
+export default AccountRequests

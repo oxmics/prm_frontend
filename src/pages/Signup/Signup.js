@@ -4,7 +4,7 @@ import Button from "../../components/Button/Button"
 import styles from "./Signup.module.scss"
 import { Link } from "react-router-dom"
 import { useState } from "react"
-import { AccountRequests } from "../../requests/requests"
+import { AccountRequests } from "../../requests"
 
 const Signin = () => {
     const [form, setForm] = useState({ firstname: "", lastname: "", email: "", password: "" })
