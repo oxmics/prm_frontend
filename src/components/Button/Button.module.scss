@@ -1,0 +1,15 @@
+@use "../../assets/scss/colors.scss" as colors;
+
+.Button {
+    display: block;
+    width: 100%;
+    border-radius: 1.6rem;
+    outline: none;
+    border: none;
+    background: colors.$color-button-blue;
+    font-size: 1.8rem;
+    color: colors.$color-white;
+    padding: 2rem 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+}

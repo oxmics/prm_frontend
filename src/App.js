@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import Dashboard from './pages/Dashboard/Dashboard'
+import NotFound from './pages/NotFound/NotFound'
+import Signin from './pages/Signin/Signin';
+import "./assets/scss/global.scss"
 
 class App extends Component {
   render() {
@@ -8,6 +11,8 @@ class App extends Component {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Dashboard />} />
+          <Route path='/signin' element={<Signin />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     );

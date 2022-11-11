@@ -1,0 +1,52 @@
+@use "../../assets/scss/colors.scss" as colors;
+
+.Signin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+
+    &__container {
+        width: 43rem;
+        max-width: 43rem;
+    }
+
+    &__logo {
+        margin-bottom: 2.6rem;
+    }
+
+    &__title {
+        font-size: 5.6rem;
+        font-weight: 900;
+        margin-bottom: 3rem;
+    }
+
+    &__inputWrapper {
+        margin-bottom: 2rem;
+        width: 100%;
+    }
+
+    &__buttonWrapper {
+        margin-bottom: 4rem;
+    }
+
+    &__bottomText {
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: colors.$color-text-grey;
+        margin-bottom: 4rem;
+        max-width: 30rem;
+    }
+
+    &__signupText {
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: colors.$color-text-grey;
+
+        a {
+            color: colors.$color-black;
+            text-decoration: none;
+        }
+    }
+}

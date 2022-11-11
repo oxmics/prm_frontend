@@ -1,0 +1,37 @@
+@use "../../assets/scss/colors.scss" as colors;
+
+.Input {
+    border-radius: 1.6rem;
+    background: colors.$color-input;
+    overflow: hidden;
+    padding: 1rem 1.8rem;
+    cursor: text;
+
+    &__inputWrapper {
+        display: flex;
+        align-items: center;
+    }
+
+    &__icon {
+        font-size: 3rem;
+        margin-right: 1.8rem;
+        color: rgba(0, 0, 0, 0.5);
+    }
+
+    &__input {
+        font-size: 1.8rem;
+        width: 100%;
+        border: none;
+        outline: none;
+        background-color: cornflowerblue;
+        background-color: transparent;
+
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus,
+        &:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px colors.$color-input inset !important;
+            box-shadow: 0 0 0 30px colors.$color-input inset !important;
+        }
+    }
+}
