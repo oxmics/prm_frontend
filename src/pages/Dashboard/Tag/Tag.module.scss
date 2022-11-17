@@ -1,0 +1,21 @@
+.Tag {
+    padding: 1rem 2rem;
+    border-radius: .8rem;
+    width: fit-content;
+    text-align: center;
+
+    &__pending {
+        color: #936DFF;
+        background-color: #F7F5FF;
+    }
+
+    &__approved {
+        color: #22C55E;
+        background-color: #F6FDF9;
+    }
+
+    &__new {
+        color: #FF784B;
+        background-color: #FFF7F5;
+    }
+}

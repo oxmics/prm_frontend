@@ -1,1 +1,186 @@
-.Dashboard {}
+.Dashboard {
+    min-height: 100vh;
+    display: flex;
+
+    &__sidebar {
+        min-height: 100vh;
+    }
+
+    &__content {
+        flex-grow: 1;
+        padding: 4.9rem 4rem;
+    }
+
+    &__navbar {
+        margin-bottom: 5.6rem;
+    }
+
+    &__layers {
+        display: flex;
+        width: fit-content;
+        margin: 0 auto;
+    }
+
+    &__layersLeft {
+        max-width: 68rem;
+    }
+
+    &__layerOne {
+        display: flex;
+        margin-bottom: 3.5rem;
+        // justify-content: space-between;
+    }
+
+    &__requestsCard {
+        margin-right: 2rem;
+        padding: 4.5rem 6rem;
+
+        h1 {
+            font-size: 6.4rem;
+        }
+
+        p {
+            font-size: 1.4rem;
+            color: #718096;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+    }
+
+    &__organizationCard {
+        padding: 1.8rem 2.4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-grow: 1;
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #718096;
+            margin-bottom: 4px;
+        }
+    }
+
+    &__organizationCardInnerWrapper {
+        display: flex;
+        justify-content: space-between;
+
+        h1 {
+            font-size: 4rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #1A202C;
+            font-weight: 600;
+        }
+    }
+
+    &__organizationCardStaff,
+    &__organizationCardDocuments {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 1.3rem 2.3rem;
+    }
+
+    &__organizationCardStaff {
+        margin-right: 2rem;
+    }
+
+    &__organizationCardDocuments {
+        flex-grow: 1;
+    }
+
+    &__layerTwo {
+        margin-bottom: 3.5rem;
+    }
+
+    &__overviewCard {
+        display: flex;
+        justify-content: space-between;
+
+        >div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            padding: 2rem 3.2rem;
+
+            &:not(:last-child) {
+                border-right: 1px solid #EDF2F7;
+            }
+        }
+
+        h2 {
+            font-size: 1.8rem;
+        }
+
+        p {
+            font-size: 1.4rem;
+            color: #718096;
+        }
+    }
+
+    &__prevReqCard {
+        padding: 2rem;
+
+        h1 {
+            font-size: 1.6rem;
+            margin-bottom: 1.7rem;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        th {
+            font-size: 1.2rem;
+            text-align: left;
+        }
+
+        td {
+            font-size: 1.4rem;
+        }
+
+        tbody tr {}
+    }
+
+    &__layersRight {
+        margin-left: 4rem;
+        max-width: 38.4rem;
+
+        h1 {
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+        }
+
+        p {
+            font-size: 1.4rem;
+            color: #718096;
+        }
+
+        &__one {}
+
+        &__noticeCard {
+            padding: 2.4rem 1.4rem;
+        }
+
+        &__noticeCardContent {
+            padding: 2.4rem;
+            background-color: #EDF2F7;
+        }
+    }
+}
