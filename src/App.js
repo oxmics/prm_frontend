@@ -6,6 +6,7 @@ import Signin from './pages/Signin/Signin';
 import Signup from './pages/Signup/Signup';
 import "./assets/scss/global.scss"
 import Requests from './pages/Requests/Requests';
+import StaffManagement from './pages/StaffManagement/StaffManagement';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
           <Route path='/requests' element={<Requests />} />
           <Route path='/signin' element={<Signin />} />
           <Route path='/signup' element={<Signup />} />
+          <Route path='/staff-management' element={<StaffManagement />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </BrowserRouter>

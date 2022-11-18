@@ -16,8 +16,6 @@ const Requests = (props) => {
         if (page === 0) {
             return setPage(1)
         }
-
-
     }
 
     return (
@@ -115,6 +113,9 @@ const Requests = (props) => {
                                 <label htmlFor="scope-of-work">Scope of Work</label>
                                 <TextareaAutosize name="scope-of-work" cols="30" rows="10" placeholder="Please enter the details of scope of work"></TextareaAutosize>
                             </div>
+                            <p className={styles.Requests__guidelines}>By pressing the submit button, I agree to QDG  a previous request hasn’t been made
+                                in the recent months regarding the same and have clearly undergone the guidelines
+                                and assure have made the details comply the guidelines mentioned.</p>
                             <div className={styles.Requests__formBtnWrapper}>
                                 <Button type="submit">Submit</Button>
                             </div>

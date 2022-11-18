@@ -3,7 +3,7 @@ import Navbar from "../../components/Navbar/Navbar"
 import Card from "../../components/Card/Card"
 
 import styles from "./Dashboard.module.scss"
-import Tag from "./Tag/Tag"
+import Tag from "../../components/Tag/Tag"
 
 const Dashboard = () => {
     return (

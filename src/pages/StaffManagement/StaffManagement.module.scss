@@ -1,0 +1,30 @@
+.StaffManagement {
+    &__card {
+        padding: 1.8rem;
+    }
+
+    &__table {
+        width: 100%;
+        text-align: left;
+
+        tr {
+            border-bottom: 1px solid #F4F4F4;
+        }
+
+        th {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        &__name {
+            font-size: 1.4rem;
+            font-weight: 500;
+        }
+
+        &__phone,
+        &__email {
+            font-size: 1.2rem;
+            color: #171832;
+        }
+    }
+}
