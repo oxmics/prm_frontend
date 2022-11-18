@@ -1,0 +1,90 @@
+.Requests {
+    position: relative;
+    height: 100%;
+
+    &__title {
+        font-size: 3.2rem;
+        font-weight: 700;
+        color: rgba(121, 124, 131, 1);
+        margin-bottom: 4.7rem;
+    }
+
+    &__form {
+        max-width: 70rem;
+    }
+
+    &__formRow {
+        display: flex;
+    }
+
+    &__formRow &__formGroup {
+        &:not(:last-child) {
+            margin-right: 2.2rem;
+        }
+    }
+
+    &__formGroup {
+        display: block;
+        width: 100%;
+        margin-bottom: 2.4rem;
+
+        label {
+            display: block;
+            width: 100%;
+            font-size: 1.4rem;
+            color: #111827;
+            font-weight: 700;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            display: block;
+            font-size: 1.4rem;
+            border: none;
+            border-bottom: 1px solid #D1D5DB;
+            padding: 1rem 0;
+            outline: none;
+        }
+
+        textarea {
+            margin-top: 1rem;
+            border: 1px solid #D1D5DB;
+            min-width: 100%;
+            max-width: 100%;
+            padding: 1rem;
+            resize: none;
+            min-height: 10rem;
+            font-family: inherit;
+        }
+    }
+
+    &__formBtnWrapper {
+        max-width: 18rem;
+        // position: absolute;
+        // bottom: 0;
+        // right: 0;
+
+        >button {
+            padding: 1.5rem 6.2rem;
+            border-radius: 1.5rem;
+        }
+    }
+
+    &__formCheckbox {
+        display: flex;
+        margin-top: 1rem;
+        align-items: center;
+
+        input {
+            width: fit-content;
+            height: fit-content;
+            margin-right: 1.2rem;
+        }
+
+        label {
+            font-size: 1.6rem;
+            font-weight: 400;
+        }
+    }
+}

@@ -6,7 +6,6 @@
     justify-content: space-between;
     align-items: center;
     flex-grow: 1;
-    font-size: 2.4rem;
 
     &__buttons {
         display: flex;
@@ -43,5 +42,9 @@
             width: fit-content;
             border-radius: 30px;
         }
+    }
+
+    h1 {
+        font-size: 2.4rem;
     }
 }

@@ -1,8 +1,8 @@
 import styles from "./Button.module.scss"
 
-const Button = ({ children, type }) => {
+const Button = ({ children, ...rest }) => {
     return (
-        <button className={styles.Button} type={type}>{children}</button>
+        <button className={styles.Button} {...rest}>{children}</button>
     )
 }
 

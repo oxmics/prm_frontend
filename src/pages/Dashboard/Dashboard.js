@@ -14,7 +14,7 @@ const Dashboard = () => {
 
             <div className={styles.Dashboard__content}>
                 <div className={styles.Dashboard__navbar}>
-                    <Navbar />
+                    <Navbar title="Dashboard" />
                 </div>
                 <div className={styles.Dashboard__layers}>
                     <div className={styles.Dashboard__layersLeft}>
