@@ -1,0 +1,180 @@
+.Dashboard {
+    min-height: 100vh;
+    display: flex;
+
+    &__sidebar {
+        min-height: 100vh;
+    }
+
+    &__content {
+        flex-grow: 1;
+        padding: 4.9rem 4rem;
+    }
+
+    &__navbar {
+        margin-bottom: 5.6rem;
+    }
+
+    &__layers {
+        display: flex;
+        // width: fit-content;
+        // margin: 0 auto;
+        justify-content: space-between;
+    }
+
+    &__layersLeft {
+        flex-grow: 1;
+        max-width: 68rem;
+    }
+
+    &__layerOne {
+        display: flex;
+        margin-bottom: 3.5rem;
+        // justify-content: space-between;
+    }
+
+    &__requestsCard,
+    &__organizationCard,
+    &__usersCard {
+        margin-right: 2rem;
+        padding: 1.4rem 3.8rem;
+
+        h1 {
+            font-size: 6.4rem;
+        }
+
+        p {
+            font-size: 1.4rem;
+            color: #718096;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+    }
+
+    &__layerTwo {
+        margin-bottom: 3.5rem;
+    }
+
+    &__overviewCard {
+        display: flex;
+        justify-content: space-between;
+
+        >div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            padding: 2rem 3.2rem;
+
+            &:not(:last-child) {
+                border-right: 1px solid #EDF2F7;
+            }
+        }
+
+        h2 {
+            font-size: 1.8rem;
+        }
+
+        p {
+            font-size: 1.4rem;
+            color: #718096;
+        }
+    }
+
+    &__prevReqCard {
+        padding: 2rem;
+
+        h1 {
+            font-size: 1.6rem;
+            margin-bottom: 1.7rem;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        th {
+            font-size: 1.2rem;
+            text-align: left;
+        }
+
+        td {
+            font-size: 1.4rem;
+        }
+
+        tbody tr {}
+    }
+
+    &__layersRight {
+        margin-left: 4rem;
+        max-width: 38.4rem;
+
+        h1 {
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+        }
+
+        p {
+            font-size: 1.4rem;
+            color: #718096;
+        }
+
+        &__one {}
+
+        &__noticeCard {
+            padding: 2.4rem 1.4rem;
+        }
+
+        &__noticeCardContent {
+            padding: 2.4rem;
+            background-color: #EDF2F7;
+        }
+    }
+
+    &__recentReqCards {
+        padding: 1.7rem 2rem;
+
+        >h1 {
+            margin-bottom: 1.6rem;
+            font-size: 2.4rem;
+            font-weight: 600;
+        }
+    }
+
+    &__recentReqCard {
+        padding: 1rem 1.5rem;
+        border: 1px solid #C9BEBE;
+
+        &:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__recentReqCardTitle {
+        font-size: 1.4rem;
+        margin-bottom: .8rem;
+    }
+
+    &__recentReqCardTenderName,
+    &__recentReqCardRequestedBy,
+    &__recentReqCardDate {
+        font-size: 1.2rem;
+        margin-bottom: .8rem;
+        color: #718096;
+        font-weight: 500;
+    }
+
+    &__recentReqCardRequestedBy {}
+
+    &__recentReqCardDate {
+        text-align: right;
+        font-weight: 800;
+        margin-bottom: 0;
+    }
+}

@@ -7,6 +7,7 @@ import Signup from './pages/Signup/Signup';
 import "./assets/scss/global.scss"
 import Requests from './pages/Requests/Requests';
 import StaffManagement from './pages/StaffManagement/StaffManagement';
+import GodDashboard from "./pages/God/Dashboard/Dashboard"
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
           <Route path='/signin' element={<Signin />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/staff-management' element={<StaffManagement />} />
+          <Route path='/god/dashboard' element={<GodDashboard />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </BrowserRouter>

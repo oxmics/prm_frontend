@@ -1,0 +1,25 @@
+@use "../../../../assets/scss/colors.scss" as colors;
+
+.Button {
+    // font-size: 1.6rem;
+    // font-weight: bold;
+    padding: 1.3rem;
+    color: colors.$color-text-grey;
+    border-radius: 1rem;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    display: block;
+    width: 100%;
+    text-align: left;
+
+    i {
+        font-size: 1.8rem;
+        margin-right: 0.5rem;
+    }
+
+    &__active {
+        background-color: colors.$color-button-blue;
+        color: colors.$color-white;
+    }
+}
