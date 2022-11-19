@@ -1,5 +1,3 @@
-import AccountRequests from "./AccountRequests";
+import AccountRequests from './AccountApi'
 
-export {
-    AccountRequests
-}
+export { AccountRequests }

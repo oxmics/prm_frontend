@@ -1,127 +1,303 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import styles from "./Requests.module.scss";
-import Sidebar from '../../components/Sidebar/Sidebar';
-import Navbar from "../../components/Navbar/Navbar";
-import Layout from '../../components/Layout/Layout';
-import Button from "../../components/Button/Button"
-import TextareaAutosize from 'react-textarea-autosize';
+import styles from './Requests.module.scss'
+import Sidebar from '../../components/Sidebar/Sidebar'
+import Navbar from '../../components/Navbar/Navbar'
+import Layout from '../../components/Layout/Layout'
+import Button from '../../components/Button/Button'
+import TextareaAutosize from 'react-textarea-autosize'
+import RequestApi from '../../requests/RequestApi'
+import { toast } from 'react-toastify'
+import ValidationError from '../../errorHandler/ValidationError'
 
 const Requests = (props) => {
     const [page, setPage] = useState(0)
+    const [form, setForm] = useState({})
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         if (page === 0) {
             return setPage(1)
         }
+
+        if (page === 1) {
+            console.log(form)
+            try {
+                const request = await RequestApi.createRequest({
+                    contact: form.contact,
+                    cost_estimate: form.cost_estimate,
+                    email: form.email,
+                    first_name: form.first_name,
+                    job_title: form.job_title,
+                    last_name: form.last_name,
+                    organization_name: form.organization_name,
+                    scope_of_work: form.scope_of_work,
+                    tender_title: form.tender_title,
+                    tender_type: form.tender_type,
+                })
+            } catch (err) {
+                if (err instanceof ValidationError) {
+                    toast(err.message, {
+                        type: 'error',
+                    })
+                    return
+                }
+                toast('Something went wrong!', {
+                    type: 'error',
+                })
+            }
+        }
+    }
+
+    const handleChange = (e) => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value,
+        })
+    }
+
+    const handleGoToPrev = (e) => {
+        e.preventDefault()
+        setPage(page - 1)
     }
 
     return (
         <Layout current="requests" title="Create a new request">
             <div className={styles.Requests}>
-                {page === 0 &&
+                {page === 0 && (
                     <>
-                        <h1 className={styles.Requests__title}>Requester Details</h1>
-                        <form className={styles.Requests__form} onSubmit={handleSubmit}>
+                        <h1 className={styles.Requests__title}>
+                            Requester Details
+                        </h1>
+                        <form
+                            className={styles.Requests__form}
+                            onSubmit={handleSubmit}
+                        >
                             <div className={styles.Requests__formRow}>
                                 <div className={styles.Requests__formGroup}>
-                                    <label htmlFor="firstname">First Name</label>
-                                    <input type="text" name="firstname" placeholder="Enter your first name" value="" />
+                                    <label htmlFor="first_name">
+                                        First Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="first_name"
+                                        placeholder="Enter your first name"
+                                        value={form.first_name || ''}
+                                        onChange={handleChange}
+                                    />
                                 </div>
                                 <div className={styles.Requests__formGroup}>
-                                    <label htmlFor="lastname">Last Name</label>
-                                    <input type="text" name="lastname" placeholder="Enter your last name" value="" />
+                                    <label htmlFor="last_name">Last Name</label>
+                                    <input
+                                        type="text"
+                                        name="last_name"
+                                        placeholder="Enter your last name"
+                                        value={form.last_name || ''}
+                                        onChange={handleChange}
+                                    />
                                 </div>
                             </div>
 
                             <div className={styles.Requests__formGroup}>
-                                <label htmlFor="job-title">Job Title</label>
-                                <input type="text" name="job-title" placeholder="Enter your job title" value="" />
+                                <label htmlFor="job_title">Job Title</label>
+                                <input
+                                    type="text"
+                                    name="job_title"
+                                    placeholder="Enter your job title"
+                                    value={form.job_title || ''}
+                                    onChange={handleChange}
+                                />
                             </div>
 
                             <div className={styles.Requests__formGroup}>
-                                <label htmlFor="organization-name">Organization Name</label>
-                                <input type="text" name="organization-name" placeholder="Enter your organization name" value="" />
+                                <label htmlFor="organization_name">
+                                    Organization Name
+                                </label>
+                                <input
+                                    type="text"
+                                    name="organization_name"
+                                    placeholder="Enter your organization name"
+                                    value={form.organization_name || ''}
+                                    onChange={handleChange}
+                                />
                             </div>
 
                             <div className={styles.Requests__formGroup}>
-                                <label htmlFor="email">Organization Name</label>
-                                <input type="email" name="email" placeholder="example@email.com" value="" />
+                                <label htmlFor="email">Email</label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="example@email.com"
+                                    value={form.email || ''}
+                                    onChange={handleChange}
+                                />
                             </div>
 
                             <div className={styles.Requests__formGroup}>
-                                <label htmlFor="ph-no">Phone number</label>
-                                <input type="text" name="ph-no" placeholder="+1 201-555-0123" value="" />
+                                <label htmlFor="contact">Phone number</label>
+                                <input
+                                    type="text"
+                                    name="contact"
+                                    placeholder="+1 201-555-0123"
+                                    value={form.contact || ''}
+                                    onChange={handleChange}
+                                />
                             </div>
                             <div className={styles.Requests__formBtnWrapper}>
                                 <Button type="submit">Next</Button>
                             </div>
                         </form>
                     </>
-                }
+                )}
 
-                {page === 1 &&
+                {page === 1 && (
                     <>
-                        <h1 className={styles.Requests__title}>Tender Details</h1>
-                        <form className={styles.Requests__form} onSubmit={handleSubmit}>
+                        <h1 className={styles.Requests__title}>
+                            Tender Details
+                        </h1>
+                        <form
+                            className={styles.Requests__form}
+                            onSubmit={handleSubmit}
+                        >
                             <div className={styles.Requests__formGroup}>
-                                <label htmlFor="tender-title">Tender Title</label>
-                                <input type="text" name="tender-title" placeholder="Enter the tender title" value="" />
+                                <label htmlFor="tender_title">
+                                    Tender Title
+                                </label>
+                                <input
+                                    type="text"
+                                    name="tender_title"
+                                    placeholder="Enter the tender title"
+                                    value={form.tender_title || ''}
+                                    onChange={handleChange}
+                                />
                             </div>
 
                             <div className={styles.Requests__formGroup}>
-                                <label htmlFor="cost-estimate">Cost Estimate</label>
-                                <input type="text" name="cost-estimate" placeholder="Enter the estimated cost" value="" />
+                                <label htmlFor="cost_estimate">
+                                    Cost Estimate
+                                </label>
+                                <input
+                                    type="text"
+                                    name="cost_estimate"
+                                    placeholder="Enter the estimated cost"
+                                    value={form.cost_estimate || ''}
+                                    onChange={handleChange}
+                                />
                             </div>
 
                             <div className={styles.Requests__formGroup}>
                                 <label>Choose the tender type</label>
                                 <div className={styles.Requests__formCheckbox}>
-                                    <input type="checkbox" name="tender-type" id='licenses-and-software' />
-                                    <label htmlFor="licenses-and-software">Licenses and software (including new licenses)</label>
+                                    <input
+                                        type="radio"
+                                        onChange={handleChange}
+                                        value="1"
+                                        name="tender_type"
+                                        id="licenses-and-software"
+                                    />
+                                    <label htmlFor="licenses-and-software">
+                                        Licenses and software (including new
+                                        licenses)
+                                    </label>
                                 </div>
 
                                 <div className={styles.Requests__formCheckbox}>
-                                    <input type="checkbox" name="tender-type" id='hardware-and-networks' />
-                                    <label htmlFor="hardware-and-networks">Hardware,equipments and networks(including maintainance contracts)</label>
+                                    <input
+                                        type="radio"
+                                        onChange={handleChange}
+                                        value="2"
+                                        name="tender_type"
+                                        id="hardware-and-networks"
+                                    />
+                                    <label htmlFor="hardware-and-networks">
+                                        Hardware,equipments and
+                                        networks(including maintainance
+                                        contracts)
+                                    </label>
                                 </div>
 
                                 <div className={styles.Requests__formCheckbox}>
-                                    <input type="checkbox" name="tender-type" id='outsourcing-and-resources' />
-                                    <label htmlFor="outsourcing-and-resources">Outsourcing of human resources (Staff augmentation)</label>
+                                    <input
+                                        type="radio"
+                                        onChange={handleChange}
+                                        value="3"
+                                        name="tender_type"
+                                        id="outsourcing-and-resources"
+                                    />
+                                    <label htmlFor="outsourcing-and-resources">
+                                        Outsourcing of human resources (Staff
+                                        augmentation)
+                                    </label>
                                 </div>
 
                                 <div className={styles.Requests__formCheckbox}>
-                                    <input type="checkbox" name="tender-type" id='consulting-services' />
-                                    <label htmlFor="consulting-services">Consulting Services</label>
+                                    <input
+                                        type="radio"
+                                        onChange={handleChange}
+                                        value="4"
+                                        name="tender_type"
+                                        id="consulting-services"
+                                    />
+                                    <label htmlFor="consulting-services">
+                                        Consulting Services
+                                    </label>
                                 </div>
 
                                 <div className={styles.Requests__formCheckbox}>
-                                    <input type="checkbox" name="tender-type" id='operations-and-support' />
-                                    <label htmlFor="operations-and-support">Operations and technical support</label>
+                                    <input
+                                        type="radio"
+                                        onChange={handleChange}
+                                        value="5"
+                                        name="tender_type"
+                                        id="operations-and-support"
+                                    />
+                                    <label htmlFor="operations-and-support">
+                                        Operations and technical support
+                                    </label>
                                 </div>
 
                                 <div className={styles.Requests__formCheckbox}>
-                                    <input type="checkbox" name="tender-type" id='integrated-services' />
-                                    <label htmlFor="integrated-services">Intergrated Services</label>
+                                    <input
+                                        type="radio"
+                                        onChange={handleChange}
+                                        value="6"
+                                        name="tender_type"
+                                        id="integrated-services"
+                                    />
+                                    <label htmlFor="integrated-services">
+                                        Intergrated Services
+                                    </label>
                                 </div>
                             </div>
 
                             <div className={styles.Requests__formGroup}>
-                                <label htmlFor="scope-of-work">Scope of Work</label>
-                                <TextareaAutosize name="scope-of-work" cols="30" rows="10" placeholder="Please enter the details of scope of work"></TextareaAutosize>
+                                <label htmlFor="scope_of_work">
+                                    Scope of Work
+                                </label>
+                                <TextareaAutosize
+                                    name="scope_of_work"
+                                    cols="30"
+                                    rows="10"
+                                    placeholder="Please enter the details of scope of work"
+                                    value={form.scope_of_work || ''}
+                                    onChange={handleChange}
+                                ></TextareaAutosize>
                             </div>
-                            <p className={styles.Requests__guidelines}>By pressing the submit button, I agree to QDG  a previous request hasn’t been made
-                                in the recent months regarding the same and have clearly undergone the guidelines
-                                and assure have made the details comply the guidelines mentioned.</p>
+                            <p className={styles.Requests__guidelines}>
+                                By pressing the submit button, I agree to QDG a
+                                previous request hasn’t been made in the recent
+                                months regarding the same and have clearly
+                                undergone the guidelines and assure have made
+                                the details comply the guidelines mentioned.
+                            </p>
                             <div className={styles.Requests__formBtnWrapper}>
+                                <Button onClick={handleGoToPrev}>Prev</Button>
                                 <Button type="submit">Submit</Button>
                             </div>
                         </form>
                     </>
-                }
+                )}
             </div>
         </Layout>
     )

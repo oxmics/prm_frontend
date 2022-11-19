@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 
-import AccountRequests from '../../requests/AccountRequests'
+import AccountRequests from '../../requests/AccountApi'
 import ValidationError from '../../errorHandler/ValidationError'
 import Input from '../../components/Input/Input'
 import Button from '../../components/Button/Button'

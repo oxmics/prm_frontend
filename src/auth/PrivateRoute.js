@@ -1,23 +1,31 @@
 import { Navigate, Outlet } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import AccountRequests from '../requests/AccountRequests'
 
 const PrivateRoute = () => {
     const { user, login } = useAuth()
-    let usr = user
-    if (!usr) {
-        console.log(usr)
-        usr = localStorage.getItem('user')
-        if (!usr) {
-            return <Navigate to="/signin" />
+
+    if (!user) {
+        const asyncFunc = async () => {
+            let user = localStorage.getItem('user')
+            if (!user) {
+                return <Navigate to="/signin" />
+            }
+            user = JSON.parse(user)
+            login(user)
+            if (user.role === 'admin') {
+                return <Navigate to="/god" />
+            }
+            console.log('going to render outlet in !user')
+            return <Outlet />
         }
-        usr = JSON.parse(usr)
-        login(usr)
+        asyncFunc()
+    } else {
+        if (user.role === 'admin') {
+            return <Navigate to="/god" />
+        }
+        console.log('going to render outlet')
+        return <Outlet />
     }
-    if (usr.role === 'admin') {
-        return <Navigate to="/god" />
-    }
-    return <Outlet />
 }
 
 export default PrivateRoute

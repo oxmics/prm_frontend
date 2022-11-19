@@ -34,7 +34,7 @@ const Navbar = ({ title }) => {
                 <h1>{title}</h1>
             </div>
             <div className={styles.Navbar__buttons}>
-                <button
+                {/* <button
                     className={styles.Navbar__button}
                     onClick={handleIconClick}
                 >
@@ -46,14 +46,14 @@ const Navbar = ({ title }) => {
                     onClick={handleIconClick}
                 >
                     <i className="bi bi-bell"></i>
-                </button>
+                </button> */}
 
                 <button
                     className={styles.Navbar__button}
                     onClick={handleIconClick}
                 >
                     <i className="bi bi-person"></i>
-                    <span>Roshan</span>
+                    <span>{user.email}</span>
                     &nbsp;&nbsp;
                     <i class="bi bi-chevron-down"></i>
                 </button>

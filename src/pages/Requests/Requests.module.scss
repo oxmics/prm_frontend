@@ -64,10 +64,15 @@
         // position: absolute;
         // bottom: 0;
         // right: 0;
+        display: flex;
 
         >button {
             padding: 1.5rem 6.2rem;
             border-radius: 1.5rem;
+
+            &:not(:last-child) {
+                margin-right: 1rem;
+            }
         }
     }
 

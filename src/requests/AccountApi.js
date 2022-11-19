@@ -1,7 +1,7 @@
 import Requests from './Requests'
 import ValidationError from '../errorHandler/ValidationError'
 
-class AccountRequests extends Requests {
+class AccountApi extends Requests {
     static apiUrl = this.apiBaseUrl + '/account'
 
     static async createUser({ email, password }) {
@@ -61,4 +61,4 @@ class AccountRequests extends Requests {
     }
 }
 
-export default AccountRequests
+export default AccountApi
