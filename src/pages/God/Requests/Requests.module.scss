@@ -1,0 +1,85 @@
+@use "../../../assets/scss/colors.scss" as colors;
+
+.Requests {
+    &__table {
+        width: 100%;
+        max-width: 110rem;
+        text-align: left;
+
+        tr {
+            position: relative;
+        }
+
+        th {
+            font-weight: 800;
+            font-size: 1.6rem;
+            color: #718096;
+        }
+
+        td {
+            color: #1A202C;
+        }
+
+        &__title {
+            font-size: 1.6rem;
+            font-weight: 800;
+        }
+
+        &__date {
+            font-size: 1.6rem;
+            font-weight: 500;
+        }
+
+        &__organization {
+            font-size: 1.6rem;
+            font-weight: 500;
+        }
+
+        &__budget {
+            font-size: 1.6rem;
+            font-weight: 800;
+        }
+
+        &__status {
+            font-size: 1.4rem;
+        }
+
+        &__action {
+            button {
+                cursor: pointer;
+                background-color: transparent;
+                padding: 0.6rem 1rem;
+                border: 1px solid #E2E8F0;
+                border-radius: 8px;
+            }
+        }
+
+        &__dropdown {
+            background: #FFFFFF;
+            box-shadow: 8px 12px 24px rgba(93, 106, 131, 0.1);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: absolute;
+            bottom: -100% * 4;
+            right: 0;
+            z-index: 1;
+            width: 100%;
+            max-width: 16rem;
+
+            button {
+                cursor: pointer;
+                border: none;
+                background-color: transparent;
+                padding: 1.2rem 1.5rem;
+                text-align: left;
+                color: #718096;
+
+                &:hover {
+                    background-color: colors.$color-button-light-grey;
+                }
+            }
+        }
+    }
+}
