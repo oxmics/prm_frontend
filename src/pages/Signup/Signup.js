@@ -1,22 +1,73 @@
-import LogoImage from "../../assets/images/logo.png"
-import Input from "../../components/Input/Input"
-import Button from "../../components/Button/Button"
-import styles from "./Signup.module.scss"
-import { Link } from "react-router-dom"
-import { useState } from "react"
-import { AccountRequests } from "../../requests"
+import LogoImage from '../../assets/images/logo.png'
+import Input from '../../components/Input/Input'
+import Button from '../../components/Button/Button'
+import styles from './Signup.module.scss'
+import { Link, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { AccountRequests } from '../../requests'
+import { useAuth } from '../../context/AuthContext'
+import ValidationError from '../../errorHandler/ValidationError'
+import { toast } from 'react-toastify'
 
 const Signin = () => {
-    const [form, setForm] = useState({ firstname: "", lastname: "", email: "", password: "" })
+    const [form, setForm] = useState({
+        email: '',
+        password: '',
+    })
 
-    const handleFormSubmit = (e) => {
+    const { user, login } = useAuth()
+    const navigate = useNavigate()
+
+    /*=============================================
+                    EFFECTS
+     ==============================================*/
+
+    useEffect(() => {
+        if (user) {
+            navigate('/')
+        } else {
+            const usr = localStorage.getItem('user')
+            if (usr) {
+                login(JSON.parse(usr))
+                navigate('/')
+            }
+        }
+    }, [])
+
+    /*=============================================
+                    HANDLERS
+     ==============================================*/
+
+    const handleFormSubmit = async (e) => {
         e.preventDefault()
-        AccountRequests.createUser({ email: form.email, password: form.password })
+        try {
+            const user = await AccountRequests.createUser({
+                email: form.email,
+                password: form.password,
+            })
+            console.log(user)
+            await login(user)
+            navigate('/')
+        } catch (err) {
+            if (err instanceof ValidationError) {
+                toast(err.message, {
+                    type: 'error',
+                })
+                return
+            }
+            toast('Something went wrong!', {
+                type: 'error',
+            })
+        }
     }
 
     const handleInputChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
     }
+
+    /*=============================================
+                    RENDER
+     ==============================================*/
 
     return (
         <div className={styles.Signup}>
@@ -35,19 +86,44 @@ const Signin = () => {
                         </div>
                     </div> */}
                     <div className={styles.Signup__inputWrapper}>
-                        <Input type="email" bootstrapIcon="bi-envelope" placeholder="Your Email" name="email" value={form.email} onChange={handleInputChange} />
+                        <Input
+                            type="email"
+                            bootstrapIcon="bi-envelope"
+                            placeholder="Your Email"
+                            name="email"
+                            value={form.email}
+                            onChange={handleInputChange}
+                        />
                     </div>
                     <div className={styles.Signup__inputWrapper}>
-                        <Input type="password" bootstrapIcon="bi-lock" placeholder="Password" name="password" value={form.password} onChange={handleInputChange} />
+                        <Input
+                            type="password"
+                            bootstrapIcon="bi-lock"
+                            placeholder="Password"
+                            name="password"
+                            value={form.password}
+                            onChange={handleInputChange}
+                        />
                     </div>
                     <div className={styles.Signup__buttonWrapper}>
-                        <Button type="submit"><i>Sign up</i></Button>
+                        <Button type="submit">
+                            <i>Sign up</i>
+                        </Button>
                     </div>
                 </form>
-                <p className={styles.Signup__bottomText}><i>This site is protected by reCAPTCHA and the Google Privacy Policy.</i></p>
-                <p className={styles.Signup__signupText}><i>Already registered? <Link to="/signin">Sign in</Link></i></p>
+                <p className={styles.Signup__bottomText}>
+                    <i>
+                        This site is protected by reCAPTCHA and the Google
+                        Privacy Policy.
+                    </i>
+                </p>
+                <p className={styles.Signup__signupText}>
+                    <i>
+                        Already registered? <Link to="/signin">Sign in</Link>
+                    </i>
+                </p>
             </div>
-        </div >
+        </div>
     )
 }
 

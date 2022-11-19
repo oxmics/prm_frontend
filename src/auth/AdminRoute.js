@@ -3,8 +3,11 @@ import { useAuth } from "../context/AuthContext"
 
 const AdminRoute = () => {
     const { user } = useAuth()
-    if (!user || user.role !== "admin") {
+    if (!user) {
         return <Navigate to="/signin" />
+    }
+    if (user.role !== "admin") {
+        return <Navigate to="/" />
     }
     return <Outlet />
 }

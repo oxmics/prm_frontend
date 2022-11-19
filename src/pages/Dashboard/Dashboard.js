@@ -1,9 +1,10 @@
-import Sidebar from "../../components/Sidebar/Sidebar"
-import Navbar from "../../components/Navbar/Navbar"
-import Card from "../../components/Card/Card"
+import Sidebar from '../../components/Sidebar/Sidebar'
+import Navbar from '../../components/Navbar/Navbar'
+import Card from '../../components/Card/Card'
 
-import styles from "./Dashboard.module.scss"
-import Tag from "../../components/Tag/Tag"
+import styles from './Dashboard.module.scss'
+import Tag from '../../components/Tag/Tag'
+import { useAuth } from '../../context/AuthContext'
 
 const Dashboard = () => {
     return (
@@ -24,16 +25,30 @@ const Dashboard = () => {
                                 <h1>121</h1>
                             </Card>
 
-                            <Card className={styles.Dashboard__organizationCard}>
+                            <Card
+                                className={styles.Dashboard__organizationCard}
+                            >
                                 <p>Organization Name</p>
                                 <h1>Public Works Department</h1>
-                                <div className={styles.Dashboard__organizationCardInnerWrapper}>
-                                    <Card className={styles.Dashboard__organizationCardStaff}>
+                                <div
+                                    className={
+                                        styles.Dashboard__organizationCardInnerWrapper
+                                    }
+                                >
+                                    <Card
+                                        className={
+                                            styles.Dashboard__organizationCardStaff
+                                        }
+                                    >
                                         <h1>19</h1>
                                         <p>Staffs</p>
                                     </Card>
 
-                                    <Card className={styles.Dashboard__organizationCardDocuments}>
+                                    <Card
+                                        className={
+                                            styles.Dashboard__organizationCardDocuments
+                                        }
+                                    >
                                         <h1>134</h1>
                                         <p>Documents</p>
                                     </Card>
@@ -80,21 +95,27 @@ const Dashboard = () => {
                                             <td>E - Way Bill Software</td>
                                             <td>10-11-2022</td>
                                             <td>10-11-2022</td>
-                                            <td><Tag name="Pending" /></td>
+                                            <td>
+                                                <Tag name="Pending" />
+                                            </td>
                                         </tr>
 
                                         <tr>
                                             <td>E - Way Bill Software</td>
                                             <td>10-11-2022</td>
                                             <td>10-11-2022</td>
-                                            <td><Tag name="Pending" /></td>
+                                            <td>
+                                                <Tag name="Pending" />
+                                            </td>
                                         </tr>
 
                                         <tr>
                                             <td>E - Way Bill Software</td>
                                             <td>10-11-2022</td>
                                             <td>10-11-2022</td>
-                                            <td><Tag name="Pending" /></td>
+                                            <td>
+                                                <Tag name="Pending" />
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -104,11 +125,27 @@ const Dashboard = () => {
 
                     <div className={styles.Dashboard__layersRight}>
                         <div className={styles.Dashboard__layersRight__one}>
-                            <Card className={styles.Dashboard__layersRight__noticeCard}>
+                            <Card
+                                className={
+                                    styles.Dashboard__layersRight__noticeCard
+                                }
+                            >
                                 <h1>Notice</h1>
-                                <Card className={styles.Dashboard__layersRight__noticeCardContent}>
-                                    <h2>You cannot create a new request on “Existing software Change” for next 30 Days</h2>
-                                    <p>A new request for rejected tender cannot be issued in next 30 days from the day of review verdict</p>
+                                <Card
+                                    className={
+                                        styles.Dashboard__layersRight__noticeCardContent
+                                    }
+                                >
+                                    <h2>
+                                        You cannot create a new request on
+                                        “Existing software Change” for next 30
+                                        Days
+                                    </h2>
+                                    <p>
+                                        A new request for rejected tender cannot
+                                        be issued in next 30 days from the day
+                                        of review verdict
+                                    </p>
                                 </Card>
                             </Card>
                         </div>

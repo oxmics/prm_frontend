@@ -14,7 +14,7 @@ const Sidebar = ({ current }) => {
             </div>
             <div className={styles.Sidebar__buttons}>
                 <div className={styles.Sidebar__button}>
-                    <Button bootstrapIcon="bi-house" text="Dashboard" active={current == "dashboard"} onClick={() => navigate("/god/dashboard")} />
+                    <Button bootstrapIcon="bi-house" text="Dashboard" active={current == "dashboard"} onClick={() => navigate("/god")} />
                 </div>
                 <div className={styles.Sidebar__button}>
                     <Button bootstrapIcon="bi-file-text" text="Requests" active={current == "requests"} onClick={() => navigate("/god/requests")} />
