@@ -4,17 +4,30 @@ import Button from "../../components/Button/Button"
 import styles from "./Signin.module.scss"
 import { Link } from "react-router-dom"
 import { useState } from "react"
+import AccountRequests from "../../requests/AccountRequests"
+import ValidationError from "../../errorHandler/ValidationError"
 
 const Signin = () => {
     const [form, setForm] = useState({ email: "", password: "" })
 
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = async (e) => {
         e.preventDefault()
-
+        console.log(form)
+        try {
+            const user = await AccountRequests.createUser({ email: form.email, password: form.password })
+        }
+        catch (err) {
+            if (err instanceof ValidationError) {
+                alert("Couldn't Register")
+                return
+            }
+            alert("Something went wrong!")
+        }
     }
 
     const handleInputChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
+
     }
 
     return (

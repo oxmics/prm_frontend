@@ -1,9 +1,10 @@
 import Requests from "./Requests"
+import ValidationError from "../errorHandler/ValidationError"
 
 class AccountRequests extends Requests {
-    static apiUrl = super.apiBaseUrl + "/account"
+    static apiUrl = this.apiBaseUrl + "/account"
 
-    static async createUser({ token, email, password }) {
+    static async createUser({ email, password }) {
         const url = this.apiUrl + "/register/"
 
         const response = await fetch(url, {
@@ -13,7 +14,7 @@ class AccountRequests extends Requests {
         })
 
         if (!response.ok) {
-            return new Error("Couldn't Register")
+            return new ValidationError("Couldn't Register")
         }
 
         const data = await response.json()
