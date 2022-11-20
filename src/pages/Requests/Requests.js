@@ -9,10 +9,12 @@ import TextareaAutosize from 'react-textarea-autosize'
 import RequestApi from '../../requests/RequestApi'
 import { toast } from 'react-toastify'
 import ValidationError from '../../errorHandler/ValidationError'
+import { useAuth } from '../../context/AuthContext'
 
 const Requests = (props) => {
     const [page, setPage] = useState(0)
     const [form, setForm] = useState({})
+    const { user } = useAuth()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -24,17 +26,28 @@ const Requests = (props) => {
         if (page === 1) {
             console.log(form)
             try {
+                console.log('creating request...')
                 const request = await RequestApi.createRequest({
-                    contact: form.contact,
-                    cost_estimate: form.cost_estimate,
-                    email: form.email,
                     first_name: form.first_name,
-                    job_title: form.job_title,
                     last_name: form.last_name,
-                    organization_name: form.organization_name,
-                    scope_of_work: form.scope_of_work,
+                    job_title: form.job_title,
+                    organisation_name: form.organisation_name,
+                    email: form.email,
+                    contact: form.contact,
+                    token: user.token,
+                })
+                console.log('creating tender...')
+                const tender = await RequestApi.createTender({
                     tender_title: form.tender_title,
-                    tender_type: form.tender_type,
+                    cost_estimate: form.cost_estimate,
+                    tender_type: 'Licenses and software',
+                    scope_of_work: form.scope_of_work,
+                    requestId: request.id,
+                    token: user.token,
+                })
+                console.log(tender)
+                toast('Request created', {
+                    type: 'success',
                 })
             } catch (err) {
                 if (err instanceof ValidationError) {
@@ -46,6 +59,7 @@ const Requests = (props) => {
                 toast('Something went wrong!', {
                     type: 'error',
                 })
+                console.error(err)
             }
         }
     }
@@ -111,14 +125,14 @@ const Requests = (props) => {
                             </div>
 
                             <div className={styles.Requests__formGroup}>
-                                <label htmlFor="organization_name">
+                                <label htmlFor="organisation_name">
                                     Organization Name
                                 </label>
                                 <input
                                     type="text"
-                                    name="organization_name"
+                                    name="organisation_name"
                                     placeholder="Enter your organization name"
-                                    value={form.organization_name || ''}
+                                    value={form.organisation_name || ''}
                                     onChange={handleChange}
                                 />
                             </div>

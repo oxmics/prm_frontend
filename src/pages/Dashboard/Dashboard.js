@@ -1,12 +1,39 @@
+import { useEffect } from 'react'
+import { toast } from 'react-toastify'
+
 import Sidebar from '../../components/Sidebar/Sidebar'
 import Navbar from '../../components/Navbar/Navbar'
 import Card from '../../components/Card/Card'
-
-import styles from './Dashboard.module.scss'
 import Tag from '../../components/Tag/Tag'
+
+import DashboardApi from '../../requests/DashboardApi'
 import { useAuth } from '../../context/AuthContext'
+import styles from './Dashboard.module.scss'
+import ValidationError from '../../errorHandler/ValidationError'
 
 const Dashboard = () => {
+    const { user } = useAuth()
+
+    useEffect(() => {
+        const asyncFunc = async () => {
+            try {
+                const data = await DashboardApi.getDashboard(user.token)
+                console.log(data)
+            } catch (err) {
+                if (err instanceof ValidationError) {
+                    toast(err.message, {
+                        type: 'error',
+                    })
+                    return
+                }
+                toast('Something went wrong', {
+                    type: 'error',
+                })
+            }
+        }
+        asyncFunc()
+    }, [])
+
     return (
         <div className={styles.Dashboard}>
             <div className={styles.Dashboard__sidebar}>

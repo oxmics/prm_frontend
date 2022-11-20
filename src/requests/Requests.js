@@ -1,10 +1,10 @@
 class Requests {
-    static apiBaseUrl = "http://localhost:8000"
+    static apiBaseUrl = 'http://localhost:8000'
 
     static getHeaders(token) {
         return {
-            "Content-Type": "application/json",
-            ...(token && { "Authorization": token })
+            'Content-Type': 'application/json',
+            ...(token && { Authorization: 'Token ' + token }),
         }
     }
 
