@@ -1,6 +1,7 @@
 class Requests {
     static apiBaseUrl =
-        !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+        window.location.hostname === 'localhost' ||
+        window.location.hostname === '127.0.0.1'
             ? 'http://127.0.0.1:8000'
             : 'http://52.3.232.20:8000'
 
