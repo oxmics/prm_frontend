@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: prm_frontend
+    image: prm_frontend
+    build:
+      context: .
+    volumes:
+      - ./src:/app/src
+    ports:
+      - 80:3000
