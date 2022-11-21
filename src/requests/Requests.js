@@ -1,5 +1,8 @@
 class Requests {
-    static apiBaseUrl = 'http://localhost:8000'
+    static apiBaseUrl =
+        !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+            ? 'http://localhost:8000'
+            : 'http://52.3.232.20:8000'
 
     static getHeaders(token) {
         return {
