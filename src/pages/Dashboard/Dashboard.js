@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 
 import Sidebar from '../../components/Sidebar/Sidebar'
@@ -13,12 +13,37 @@ import ValidationError from '../../errorHandler/ValidationError'
 
 const Dashboard = () => {
     const { user } = useAuth()
+    const [prevReq, setPrevReq] = useState([])
 
     useEffect(() => {
         const asyncFunc = async () => {
             try {
-                const data = await DashboardApi.getDashboard(user.token)
-                console.log(data)
+                const requests = await DashboardApi.getRequests({
+                    token: user.token,
+                })
+                setPrevReq(requests)
+            } catch (err) {
+                if (err instanceof ValidationError) {
+                    toast(err.message, {
+                        type: 'error',
+                    })
+                    return
+                }
+                toast('Something went wrong!', {
+                    type: 'error',
+                })
+                console.error(err)
+            }
+        }
+
+        asyncFunc()
+    }, [])
+
+    useEffect(() => {
+        const asyncFunc = async () => {
+            try {
+                // const data = await DashboardApi.getDashboard(user.token)
+                // console.log(data)
             } catch (err) {
                 if (err instanceof ValidationError) {
                     toast(err.message, {
@@ -49,7 +74,7 @@ const Dashboard = () => {
                         <div className={styles.Dashboard__layerOne}>
                             <Card className={styles.Dashboard__requestsCard}>
                                 <p>Total Requests</p>
-                                <h1>121</h1>
+                                <h1>{prevReq.length}</h1>
                             </Card>
 
                             <Card
@@ -90,12 +115,18 @@ const Dashboard = () => {
                                 </div>
                                 <div>
                                     <p>Requests</p>
-                                    <h2>4</h2>
+                                    <h2>{prevReq.length}</h2>
                                 </div>
 
                                 <div>
                                     <p>Reviewed</p>
-                                    <h2>3</h2>
+                                    <h2>
+                                        {prevReq.reduce(
+                                            (total, req) =>
+                                                total + req.reviews.length,
+                                            0
+                                        )}
+                                    </h2>
                                 </div>
 
                                 <div>
@@ -118,32 +149,23 @@ const Dashboard = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>E - Way Bill Software</td>
-                                            <td>10-11-2022</td>
-                                            <td>10-11-2022</td>
-                                            <td>
-                                                <Tag name="Pending" />
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>E - Way Bill Software</td>
-                                            <td>10-11-2022</td>
-                                            <td>10-11-2022</td>
-                                            <td>
-                                                <Tag name="Pending" />
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>E - Way Bill Software</td>
-                                            <td>10-11-2022</td>
-                                            <td>10-11-2022</td>
-                                            <td>
-                                                <Tag name="Pending" />
-                                            </td>
-                                        </tr>
+                                        {prevReq.map((req) => {
+                                            return (
+                                                <tr>
+                                                    <td>{req.tender_title}</td>
+                                                    <td>10-11-2022</td>
+                                                    <td>10-11-2022</td>
+                                                    <td>
+                                                        {req.reviews.length !==
+                                                        0 ? (
+                                                            <Tag name="Completed" />
+                                                        ) : (
+                                                            <Tag name="Pending" />
+                                                        )}
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })}
                                     </tbody>
                                 </table>
                             </Card>

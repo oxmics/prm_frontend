@@ -16,6 +16,21 @@ class DashboardApi extends Requests {
         const data = await response.json()
         return data
     }
+
+    static async getRequests({ token }) {
+        const url = this.apiBaseUrl + '/review-requests/'
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: this.getHeaders(token),
+        })
+        if (!response.ok) {
+            // const data = await response.json()
+            // console.log(data)
+            throw new ValidationError('Something went wrong!')
+        }
+        const data = await response.json()
+        return data
+    }
 }
 
 export default DashboardApi
