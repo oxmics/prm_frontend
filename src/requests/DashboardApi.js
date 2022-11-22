@@ -31,6 +31,17 @@ class DashboardApi extends Requests {
         const data = await response.json()
         return data
     }
+
+    static async broadcastRequest({ id, token }) {
+        const url = `${this.apiBaseUrl}/broadcast-request/${id}/`
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: this.getHeaders(token),
+        })
+        if (!response.ok) {
+            throw new ValidationError('Something went wrong!')
+        }
+    }
 }
 
 export default DashboardApi

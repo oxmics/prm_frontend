@@ -12,7 +12,7 @@ const PrivateRoute = () => {
             }
             user = JSON.parse(user)
             login(user)
-            if (user.role === 'admin') {
+            if (user.is_organisation_admin === true) {
                 return <Navigate to="/god" />
             }
             console.log('going to render outlet in !user')
@@ -20,7 +20,7 @@ const PrivateRoute = () => {
         }
         asyncFunc()
     } else {
-        if (user.role === 'admin') {
+        if (user.is_organisation_admin === true) {
             return <Navigate to="/god" />
         }
         console.log('going to render outlet')

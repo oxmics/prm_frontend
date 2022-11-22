@@ -27,6 +27,7 @@ const Requests = (props) => {
             console.log(form)
             try {
                 console.log('creating request...')
+                console.log(user.token)
                 const request = await RequestApi.createRequest({
                     first_name: form.first_name,
                     last_name: form.last_name,

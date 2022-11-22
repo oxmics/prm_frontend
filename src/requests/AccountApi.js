@@ -40,7 +40,7 @@ class AccountApi extends Requests {
         }
 
         const data = await response.json()
-        return data
+        return { token: data.token, ...data.user }
     }
 
     static async loginUserWithToken(token) {
