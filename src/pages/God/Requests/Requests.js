@@ -19,6 +19,7 @@ const Requests = (props) => {
                 const data = await DashboardApi.getDashboard({
                     token: user.token,
                 })
+                console.log(data)
                 setRequests(data.map((r) => ({ ...r, dropActive: false })))
             } catch (err) {
                 if (err instanceof ValidationError) {

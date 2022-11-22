@@ -1,0 +1,17 @@
+.Layout {
+    min-height: 100vh;
+    display: flex;
+
+    &__sidebar {
+        min-height: 100vh;
+    }
+
+    &__content {
+        flex-grow: 1;
+        padding: 4.9rem 4rem;
+    }
+
+    &__navbar {
+        margin-bottom: 5.6rem;
+    }
+}

@@ -42,6 +42,23 @@ class DashboardApi extends Requests {
             throw new ValidationError('Something went wrong!')
         }
     }
+
+    static async reviewRequest({ id, token, review, score }) {
+        const url = `${this.apiBaseUrl}/review/${id}/`
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: this.getHeaders(token),
+            body: this.getJsonData({
+                review,
+                score,
+            }),
+        })
+        if (!response.ok) {
+            // const data = await response.json()
+            // console.error(data)
+            throw new ValidationError('Something went wrong!')
+        }
+    }
 }
 
 export default DashboardApi

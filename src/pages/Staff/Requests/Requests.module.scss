@@ -83,3 +83,32 @@
         }
     }
 }
+
+.Modal {
+    &__form {
+        padding: 5rem;
+        font-size: 1.6rem;
+        box-sizing: border-box;
+    }
+    &__formGroup {
+        &:not(:last-child) {
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__formLabel {
+        display: block;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    &__formInput {
+        font-family: inherit;
+        display: block;
+        border: 1px solid grey;
+        padding: 1rem;
+        border-radius: 4px;
+        outline: none;
+        min-width: 300px;
+    }
+}
