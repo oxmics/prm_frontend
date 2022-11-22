@@ -15,7 +15,9 @@ const PrivateRoute = () => {
             if (user.is_organisation_admin === true) {
                 return <Navigate to="/god" />
             }
-            console.log('going to render outlet in !user')
+            if (user.is_organisation_staff === true) {
+                return <Navigate to="/staff" />
+            }
             return <Outlet />
         }
         asyncFunc()
@@ -23,7 +25,9 @@ const PrivateRoute = () => {
         if (user.is_organisation_admin === true) {
             return <Navigate to="/god" />
         }
-        console.log('going to render outlet')
+        if (user.is_organisation_staff === true) {
+            return <Navigate to="/staff" />
+        }
         return <Outlet />
     }
 }
